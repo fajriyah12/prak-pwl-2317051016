@@ -1,29 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
+<h2 class="text-center" style="color: #5C4033;">Daftar Pengguna</h2>
 
-<h1>Daftar Pengguna</h1>
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
 
-<table>
-    <thead>
-        <tr>
-           <td>ID</td>
-           <td>NAMA</td>
-           <td>NIM</td>
-           <td>KELAS</td> 
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($users as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->nama }}</td>
-                <td>{{ $user->nim }}</td>
-                <td>{{ $user->nama_kelas }}</td>
-            </tr>
-        
-        @endforeach
-    </tbody>
-
-</table>
+<table class="table table-bordered text-center" style="background-color:#F4E9D7;">
+    <thead style="background-color:#E6D3B3; color:#5C4033;">
+                <tr class="text-center">
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>NIM</th>
+                    <th>Kelas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($users as $user)
+                    <tr>
+                        <td class="text-center">{{ $user->id }}</td>
+                        <td>{{ $user->nama }}</td>
+                        <td>{{ $user->nim }}</td>
+                        <td class="text-center">{{ $user->kelas->nama_kelas ?? '-' }}</td>
+                    </tr>
+                @empty
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
 @endsection
