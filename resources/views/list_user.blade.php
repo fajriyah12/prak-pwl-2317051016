@@ -19,7 +19,7 @@
             <tbody>
                 @forelse ($users as $user)
                     <tr>
-                        <td class="text-center">{{ $user->id }}</td>
+                        <td class="text-center">{{ $user->id }}< /td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->nim }}</td>
                         <td class="text-center">{{ $user->kelas->nama_kelas ?? '-' }}</td>
