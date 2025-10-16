@@ -43,25 +43,15 @@ body {
 <body>
 
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/user') }}">Data Mahasiswa</a>
-            <div>
-                <a href="{{ url('/user') }}" class="btn btn-sm">Daftar</a>
-                <a href="{{ url('/user/create') }}" class="btn btn-sm">Input Baru</a>
-            </div>
-        </div>
-    </nav>
+    @include('components.navbar')
 
     {{-- Content --}}
     <main class="container mt-4">
         @yield('content')
     </main>
-
+    
     {{-- Footer --}}
-    <footer class="footer text-center py-3">
-        <p>&copy; {{ date('Y') }} - Data Mahasiswa</p>
-    </footer>
+    @include('components.footer')
 
 </body>
 </html>

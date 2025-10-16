@@ -14,16 +14,39 @@
                     <th>Nama</th>
                     <th>NIM</th>
                     <th>Kelas</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($users as $user)
-                    <tr>
-                        <td class="text-center">{{ $user->id }}< /td>
-                        <td>{{ $user->nama }}</td>
-                        <td>{{ $user->nim }}</td>
-                        <td class="text-center">{{ $user->kelas->nama_kelas ?? '-' }}</td>
-                    </tr>
+                <tr>
+    <td class="text-center">{{ $user->id }}</td>
+    <td>{{ $user->nama }}</td>
+    <td>{{ $user->nim }}</td>
+    <td class="text-center">{{ $user->kelas->nama_kelas ?? '-' }}</td>
+    <td class="text-center">
+        <div class="d-flex justify-content-center gap-2">
+            {{-- Tombol Edit --}}
+            <a href="{{ route('user.edit', $user->id) }}" 
+               class="btn btn-sm text-white" 
+               style="background-color: #CFAB8D; border-color: #ECEEDF;">
+               <i class="bi bi-pencil-square"></i> Edit
+            </a>
+
+            {{-- Tombol Hapus --}}
+            <form action="{{ route('user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" 
+                     class="btn btn-sm text-white" 
+                     style="background-color: #7B542F; border-color: #ECEEDF;"
+                     onclick="return confirm('Yakin ingin menghapus user ini?')">
+                     <i class="bi bi-trash"></i> Hapus
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
                 @empty
                 @endforelse
             </tbody>
